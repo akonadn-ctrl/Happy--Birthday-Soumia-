@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Soumia ❤️</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:Arial,sans-serif;
+    background:
+        radial-gradient(circle at center,#35105d 0%,#16052b 45%,#05000d 100%);
+    color:white;
+}
+
+body{
+    perspective:1200px;
+}
+
+/* BACKGROUND */
+
+#scene{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    perspective:1000px;
+}
+
+.star{
+    position:absolute;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:white;
+    box-shadow:0 0 12px white;
+    animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:.2;transform:scale(.6)}
+    to{opacity:1;transform:scale(1.5)}
+}
+
+/* FLOATING DECORATIONS */
+
+.decor{
+    position:absolute;
+    font-size:30px;
+    pointer-events:none;
+    animation:float3d 5s ease-in-out infinite;
+    filter:drop-shadow(0 8px 12px rgba(0,0,0,.7));
+}
+
+@keyframes float3d{
+    0%{
+        transform:translate3d(0,0,0) rotateY(0deg);
+    }
+    50%{
+        transform:translate3d(25px,-35px,80px) rotateY(180deg);
+    }
+    100%{
+        transform:translate3d(0,0,0) rotateY(360deg);
+    }
+}
+
+/* INTRO */
+
+#intro{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    z-index:20;
+    transition:2s;
+}
+
+.intro-title{
+    font-size:clamp(25px,7vw,55px);
+    text-align:center;
+    text-shadow:
+        0 0 10px #fff,
+        0 0 25px #ff4fa3,
+        0 0 50px #a43cff;
+    margin-bottom:35px;
+}
+
+.button-frame{
+    position:relative;
+    padding:45px;
+    border-radius:50%;
+    transform-style:preserve-3d;
+    animation:buttonFloat 4s ease-in-out infinite;
+}
+
+@keyframes buttonFloat{
+    0%,100%{transform:translateY(0) rotateX(0deg)}
+    50%{transform:translateY(-15px) rotateX(10deg)}
+}
+
+.start{
+    border:none;
+    padding:22px 38px;
+    border-radius:50px;
+    font-size:23px;
+    font-weight:bold;
+    color:white;
+    cursor:pointer;
+    background:linear-gradient(145deg,#ff4f9a,#9b2cff);
+    box-shadow:
+        0 12px 0 #68158c,
+        0 20px 35px rgba(0,0,0,.6),
+        0 0 35px #ff4f9a;
+    transform:translateZ(50px);
+    transition:.3s;
+}
+
+.start:active{
+    transform:translateZ(20px) translateY(8px);
+    box-shadow:
+        0 5px 0 #68158c,
+        0 10px 20px rgba(0,0,0,.6);
+}
+
+.flower-ring{
+    position:absolute;
+    inset:-35px;
+    pointer-events:none;
+}
+
+.ring-item{
+    position:absolute;
+    font-size:35px;
+    filter:drop-shadow(0 5px 8px rgba(0,0,0,.7));
+}
+
+.r1{top:0;left:50%;transform:translateX(-50%)}
+.r2{top:15%;right:5%}
+.r3{top:50%;right:0}
+.r4{bottom:15%;right:5%}
+.r5{bottom:0;left:50%;transform:translateX(-50%)}
+.r6{bottom:15%;left:5%}
+.r7{top:50%;left:0}
+.r8{top:15%;left:5%}
+
+/* CAKE */
+
+#cake{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%) translateZ(100px);
+    font-size:90px;
+    opacity:0;
+    transition:2s;
+    z-index:5;
+    text-shadow:0 15px 20px rgba(0,0,0,.7);
+}
+
+/* HEART STAGE */
+
+#heartStage{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    pointer-events:none;
+    z-index:10;
+    transform-style:preserve-3d;
+}
+
+#heart{
+    position:relative;
+    width:420px;
+    height:420px;
+    transform-style:preserve-3d;
+}
+
+.heartFlower{
+    position:absolute;
+    left:50%;
+    top:50%;
+    font-size:24px;
+    transform-style:preserve-3d;
+    opacity:0;
+    filter:drop-shadow(0 6px 8px rgba(0,0,0,.7));
+    transition:
+        left 3s ease,
+        top 3s ease,
+        transform 3s ease,
+        opacity 2s;
+}
+
+#heartName{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:
+        translate(-50%,-50%)
+        translateZ(100px)
+        scale(.5);
+    font-size:42px;
+    font-weight:bold;
+    opacity:0;
+    text-shadow:
+        0 0 10px white,
+        0 0 25px #ff54a8,
+        0 0 45px #9c36ff;
+    transition:3s;
+    z-index:20;
+    white-space:nowrap;
+}
+
+/* MESSAGE */
+
+#message{
+    position:absolute;
+    bottom:8%;
+    left:50%;
+    transform:translateX(-50%) translateZ(100px);
+    width:90%;
+    max-width:650px;
+    text-align:center;
+    font-size:clamp(18px,4vw,28px);
+    line-height:1.7;
+    opacity:0;
+    text-shadow:0 0 15px #ff65b2;
+    transition:3s;
+}
+
+/* I LOVE YOU */
+
+#loveStage{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    opacity:0;
+    z-index:12;
+    transform-style:preserve-3d;
+}
+
+.love{
+    font-size:clamp(25px,7vw,65px);
+    font-weight:bold;
+    color:#ff5fa9;
+    text-shadow:
+        4px 8px 0 #75135f,
+        0 0 15px #ff5fa9,
+        0 0 35px #ff5fa9;
+    animation:love3d 3s ease-in-out infinite;
+}
+
+.leftLove{
+    transform:rotateY(25deg) rotateX(8deg);
+}
+
+.rightLove{
+    transform:rotateY(-25deg) rotateX(-8deg);
+}
+
+@keyframes love3d{
+    0%,100%{
+        transform:translateZ(0) rotateY(25deg) rotateX(8deg);
+    }
+    50%{
+        transform:translateZ(120px) rotateY(-15deg) rotateX(-5deg) scale(1.1);
+    }
+}
+
+.rightLove{
+    animation-name:love3dRight;
+}
+
+@keyframes love3dRight{
+    0%,100%{
+        transform:translateZ(0) rotateY(-25deg) rotateX(-8deg);
+    }
+    50%{
+        transform:translateZ(120px) rotateY(15deg) rotateX(5deg) scale(1.1);
+    }
+}
+
+/* FINAL */
+
+#final{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+    opacity:0;
+    z-index:30;
+    transform:translateZ(150px);
+    transition:4s;
+}
+
+#final h1{
+    font-size:clamp(30px,8vw,75px);
+    margin:10px;
+    text-shadow:
+        0 0 10px white,
+        0 0 25px #ff4fa3,
+        0 0 50px #9e36ff;
+    animation:finalGlow 2s infinite alternate;
+}
+
+#final p{
+    font-size:clamp(20px,5vw,35px);
+    text-shadow:0 0 20px #ff4fa3;
+}
+
+@keyframes finalGlow{
+    from{transform:scale(1)}
+    to{transform:scale(1.07)}
+}
+
+/* CONFETTI */
+
+.confetti{
+    position:absolute;
+    font-size:25px;
+    pointer-events:none;
+    animation:confettiFly 7s linear forwards;
+}
+
+@keyframes confettiFly{
+    0%{
+        transform:translate3d(0,0,0) rotate(0deg);
+        opacity:1;
+    }
+    100%{
+        transform:
+            translate3d(
+                calc((var(--x))*1px),
+                calc((var(--y))*1px),
+                300px
+            )
+            rotate(720deg);
+        opacity:0;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    #heart{
+        width:330px;
+        height:330px;
+    }
+
+    .heartFlower{
+        font-size:19px;
+    }
+
+    #heartName{
+        font-size:32px;
+    }
+
+    .button-frame{
+        padding:35px;
+    }
+
+    .ring-item{
+        font-size:28px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="scene"></div>
+
+<!-- INTRO -->
+
+<div id="intro">
+
+    <div class="intro-title">
+        A Special Birthday Surprise ❤️
+    </div>
+
+    <div class="button-frame">
+
+        <div class="flower-ring">
+            <span class="ring-item r1">🌹</span>
+            <span class="ring-item r2">🌸</span>
+            <span class="ring-item r3">💖</span>
+            <span class="ring-item r4">🌺</span>
+            <span class="ring-item r5">🌷</span>
+            <span class="ring-item r6">💐</span>
+            <span class="ring-item r7">🌹</span>
+            <span class="ring-item r8">❤️</span>
+        </div>
+
+        <button class="start" onclick="startSurprise()">
+            اضغطي هنا ❤️
+        </button>
+
+    </div>
+
+</div>
+
+<div id="cake">🎂🕯️🕯️🕯️</div>
+
+<!-- HEART -->
+
+<div id="heartStage">
+
+    <div id="heart">
+
+        <div id="heartName">
+            Soumia ❤️
+        </div>
+
+    </div>
+
+    <div id="message">
+        May your birthday be filled with happiness,
+        beautiful moments, flowers and endless smiles. ❤️
+    </div>
+
+</div>
+
+<!-- LOVE -->
+
+<div id="loveStage">
+
+    <div class="love leftLove">
+        I LOVE ❤️
+    </div>
+
+    <div class="love rightLove">
+        YOU ❤️
+    </div>
+
+</div>
+
+<!-- FINAL -->
+
+<div id="final">
+
+    <h1>
+        Happy Birthday, Soumia ❤️
+    </h1>
+
+    <p>
+        15 October 2010 🎂
+    </p>
+
+    <div style="font-size:55px;margin-top:20px;">
+        🌹💐🌸❤️🎂❤️🌸💐🌹
+    </div>
+
+</div>
+
+<script>
+
+/* =========================
+   STARS
+========================= */
+
+const scene = document.getElementById("scene");
+
+for(let i=0;i<100;i++){
+
+    const star=document.createElement("div");
+
+    star.className="star";
+
+    star.style.left=Math.random()*100+"%";
+    star.style.top=Math.random()*100+"%";
+
+    star.style.animationDelay=(Math.random()*3)+"s";
+
+    scene.appendChild(star);
+}
+
+
+/* =========================
+   BACKGROUND DECORATIONS
+========================= */
+
+const decorations=[
+    "🌹","🌸","🌺","🌷","🌻",
+    "💐","❤️","💖","✨","🎈",
+    "🎂","🕯️"
+];
+
+for(let i=0;i<35;i++){
+
+    const d=document.createElement("div");
+
+    d.className="decor";
+
+    d.textContent=
+        decorations[Math.floor(Math.random()*decorations.length)];
+
+    d.style.left=Math.random()*100+"%";
+    d.style.top=Math.random()*100+"%";
+
+    d.style.animationDelay=
+        (Math.random()*5)+"s";
+
+    d.style.animationDuration=
+        (4+Math.random()*5)+"s";
+
+    d.style.transform=
+        `translateZ(${Math.random()*300}px)`;
+
+    scene.appendChild(d);
+}
+
+
+/* =========================
+   HEART FLOWERS
+========================= */
+
+const heart=document.getElementById("heart");
+
+const flowers=[
+    "🌹","🌸","🌺","🌷",
+    "🌻","💐","❤️","💗",
+    "✨"
+];
+
+const heartFlowers=[];
+
+/*
+   إنشاء عدد كبير من الزهور
+   حتى يكون القلب غنيًا ومليئًا
+*/
+
+for(let i=0;i<260;i++){
+
+    const f=document.createElement("div");
+
+    f.className="heartFlower";
+
+    f.textContent=
+        flowers[Math.floor(Math.random()*flowers.length)];
+
+    /*
+       البداية عشوائية
+       خارج القلب وفي أماكن مختلفة
+    */
+
+    const startX=
+        (Math.random()*window.innerWidth)
+        -window.innerWidth/2;
+
+    const startY=
+        (Math.random()*window.innerHeight)
+        -window.innerHeight/2;
+
+    const startZ=
+        Math.random()*700-300;
+
+    f.style.left="50%";
+    f.style.top="50%";
+
+    f.style.transform=
+        `translate3d(
+            ${startX}px,
+            ${startY}px,
+            ${startZ}px
+        )
+        rotateX(${Math.random()*720}deg)
+        rotateY(${Math.random()*720}deg)
+        scale(${0.5+Math.random()*1.2})`;
+
+    heart.appendChild(f);
+
+    heartFlowers.push(f);
+}
+
+
+/* =========================
+   HEART EQUATION
+========================= */
+
+function heartPosition(t){
+
+    const x=
+        16*Math.pow(Math.sin(t),3);
+
+    const y=
+        13*Math.cos(t)
+        -5*Math.cos(2*t)
+        -2*Math.cos(3*t)
+        -Math.cos(4*t);
+
+    return {x,y};
+}
+
+
+function formHeart(){
+
+    heartFlowers.forEach((flower,i)=>{
+
+        const t=
+            (i/heartFlowers.length)
+            *Math.PI*2;
+
+        const p=heartPosition(t);
+
+        /*
+           تكبير القلب
+        */
+
+        const scale=17;
+
+        const x=p.x*scale;
+        const y=-p.y*scale;
+
+        /*
+           عمق مختلف لكل زهرة
+           ليظهر تأثير 3D
+        */
+
+        const z=
+            Math.sin(i*1.7)*80
+            +Math.random()*100;
+
+        const rotation=
+            Math.random()*720;
+
+        flower.style.left="50%";
+        flower.style.top="50%";
+
+        flower.style.opacity="1";
+
+        flower.style.transform=
+            `translate3d(
+                ${x}px,
+                ${y}px,
+                ${z}px
+            )
+            rotateZ(${rotation}deg)
+            rotateY(${rotation/2}deg)
+            scale(${0.7+Math.random()*0.8})`;
+    });
+}
+
+
+/* =========================
+   DISSOLVE HEART
+========================= */
+
+function dissolveHeart(){
+
+    heartFlowers.forEach((flower,i)=>{
+
+        setTimeout(()=>{
+
+            const x=
+                (Math.random()-0.5)
+                *window.innerWidth*1.5;
+
+            const y=
+                (Math.random()-0.5)
+                *window.innerHeight*1.5;
+
+            const z=
+                Math.random()*800;
+
+            flower.style.opacity="0";
+
+            flower.style.transform=
+                `translate3d(
+                    ${x}px,
+                    ${y}px,
+                    ${z}px
+                )
+                rotateX(720deg)
+                rotateY(720deg)
+                scale(.2)`;
+
+        },i*7);
+    });
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+function createConfetti(){
+
+    const items=[
+        "🎉","🎊","✨","❤️",
+        "🌹","🌸","💖","🎈"
+    ];
+
+    for(let i=0;i<80;i++){
+
+        const c=document.createElement("div");
+
+        c.className="confetti";
+
+        c.textContent=
+            items[Math.floor(Math.random()*items.length)];
+
+        c.style.left="50%";
+        c.style.top="50%";
+
+        c.style.setProperty(
+            "--x",
+            (Math.random()-0.5)
+            *window.innerWidth*2
+        );
+
+        c.style.setProperty(
+            "--y",
+            (Math.random()-0.5)
+            *window.innerHeight*2
+        );
+
+        c.style.animationDelay=
+            Math.random()*2+"s";
+
+        document.body.appendChild(c);
+
+        setTimeout(()=>{
+            c.remove();
+        },9000);
+    }
+}
+
+
+/* =========================
+   SURPRISE
+========================= */
+
+function startSurprise(){
+
+    /*
+       تشغيل الموسيقى هنا لاحقًا
+       عندما نضيف ملف music.mp3
+    */
+
+    const intro=
+        document.getElementById("intro");
+
+    const cake=
+        document.getElementById("cake");
+
+    const heartStage=
+        document.getElementById("heartStage");
+
+    const heartName=
+        document.getElementById("heartName");
+
+    const message=
+        document.getElementById("message");
+
+    const loveStage=
+        document.getElementById("loveStage");
+
+    const final=
+        document.getElementById("final");
+
+
+    /* =====================
+       المرحلة 1
+       0 - 20 ثانية
+    ===================== */
+
+    intro.style.opacity="0";
+    intro.style.pointerEvents="none";
+
+    cake.style.opacity="1";
+
+
+    /* =====================
+       المرحلة 2
+       20 - 40 ثانية
+    ===================== */
+
+    setTimeout(()=>{
+
+        cake.style.opacity="0";
+
+        createConfetti();
+
+    },20000);
+
+
+    /* =====================
+       المرحلة 3
+       40 - 60 ثانية
+
+       تكوين القلب
+    ===================== */
+
+    setTimeout(()=>{
+
+        heartStage.style.opacity="1";
+
+        formHeart();
+
+    },40000);
+
+
+    /* =====================
+       المرحلة 4
+       60 - 80 ثانية
+
+       اسم Soumia
+    ===================== */
+
+    setTimeout(()=>{
+
+        heartName.style.opacity="1";
+
+        heartName.style.transform=
+            "translate(-50%,-50%) translateZ(120px) scale(1)";
+
+    },60000);
+
+
+    /* =====================
+       المرحلة 5
+       80 - 100 ثانية
+
+       الرسالة
+    ===================== */
+
+    setTimeout(()=>{
+
+        message.style.opacity="1";
+
+    },80000);
+
+
+    /* =====================
+       المرحلة 6
+       100 - 120 ثانية
+
+       تفكك القلب
+    ===================== */
+
+    setTimeout(()=>{
+
+        message.style.opacity="0";
+        heartName.style.opacity="0";
+
+        dissolveHeart();
+
+    },100000);
+
+
+    /* =====================
+       المرحلة 7
+       120 - 140 ثانية
+
+       I LOVE YOU
+    ===================== */
+
+    setTimeout(()=>{
+
+        heartStage.style.opacity="0";
+
+        loveStage.style.opacity="1";
+
+    },120000);
+
+
+    /* =====================
+       المرحلة 8
+       140 - 160 ثانية
+
+       النهاية
+    ===================== */
+
+    setTimeout(()=>{
+
+        loveStage.style.opacity="0";
+
+        final.style.opacity="1";
+
+        createConfetti();
+
+    },140000);
+
+}
+
+</script>
+
+</body>
+  </html>
